@@ -23,6 +23,7 @@ int res_length = 0;
 
 int previous0 = 0;
 int previous1 = 0;
+int previous2 = 0;
 
 void setup() {
   //start serial communication
@@ -105,7 +106,7 @@ void loop() {
 void randomCalc() {  
   secOperand = random(100);
   firstOperand = random(100);
-  
+
   lcd.clear();
   lcd.print(intro[random(1)]);
   lcd.setCursor(0, 1);
@@ -120,11 +121,6 @@ void saveResult(int num) {
   
   // we limit the length of the answer to 3 digit
   if(answer.length() < 3) {
-    /*result[res_length] = num;
-    //Serial.println(num);
-    res_length++;*/
-    
-    //String numT = String(num);
   
     answer = answer + String(num);
     lcd.setCursor((question.length() + answer.length() - 1), 2);
@@ -148,6 +144,7 @@ void computeResult() {
   }
   
   lcd.clear();
+  // convert answer back into integer
   answerN = atoi(answer.c_str());
   Serial.println(firstOperand - secOperand);
   Serial.println(answerN);
@@ -162,14 +159,14 @@ void computeResult() {
         lcd.print("Congrats!");
       }
       else {
-        lcd.print("Looser!");
+        lcd.print("Loser!");
       }
-  } else {tn
+  } else {
       if(firstOperand + secOperand == answerN) {
         lcd.print("Congrats!");
       } 
       else {
-        lcd.print("Looser!");
+        lcd.print("Loser!");
       }
   }
   answer.remove(0);
