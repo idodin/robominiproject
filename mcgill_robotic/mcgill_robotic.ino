@@ -35,78 +35,71 @@ void loop() {
   // create a local variable to hold the input on pin A0 - A1
   int btnSet0 = analogRead(A0);
   int btnSet1 = analogRead(A1);
+  int btnSet2 = analogRead(A2);
 
   //Serial.println(btnSet1);
   //Serial.println(btnSet0);
   
   // get the value from the set of btns plugged to A0 
-  if(btnSet0 > 1020){
-    if(!(previous0 > 1020)){
-      saveResult(0);
+  if(btnSet0 > 1015){
+    if(!(previous0 > 1015)){
+      saveResult(9);
     }
   }
-  else if(btnSet0 >= 990 && btnSet0 <= 1010){
-    if(!(previous0 >= 990 && previous0 <= 1010)){
-      saveResult(1);
+  else if(btnSet0 >= 980 && btnSet0 <= 1010){
+    if(!(previous0 >= 980 && previous0 <= 1010)){
+      saveResult(8);
     }
   }
-  else if(btnSet0 >= 900 && btnSet0 <= 940){
-    if(!(previous0 >= 900 && previous0 <= 940)){
-      saveResult(2);
-    }
-  }
-  else if(btnSet0 >= 500 && btnSet0 <= 640){
-    if(!(previous0 >= 500 && previous0 <= 640)){
-      saveResult(3);
+  else if(btnSet0 >= 480 && btnSet0 <= 640){
+    if(!(previous0 >= 480 && previous0 <= 640)){
+      saveResult(7);
     }
   }
   else if(btnSet0 > 4 && btnSet0 <= 20){
     if(!(previous0 > 4 && previous0 <= 20)){
-      saveResult(4);
+      saveResult(6);
     }
   }
   
   
   // get the value from the set of btns plugged to A1
-  if(btnSet1 > 1020){
-    if(!(previous1 > 1020)){
+  if(btnSet1 > 1015){
+    if(!(previous1 > 1015)){
       saveResult(5);
     }
   }
-  else if(btnSet1 >= 990 && btnSet1 <= 1010){
-    if(!(previous1 >= 990 && previous1 <= 1010)){
-      saveResult(6);
+  else if(btnSet1 >= 980 && btnSet1 <= 1010){
+    if(!(previous1 >= 980 && previous1 <= 1010)){
+      saveResult(4);
     }
   }
-  else if(btnSet1 >= 900 && btnSet1 <= 940){
-    /*if(previous1 >= 900 && previous1 <= 940){
-      saveResult(7);
-    }*/
-    
-    //Serial.println(reset);
-    // code for btn reset is placed here because I don't have enough button
-    if (!(previous1 >= 900 && previous1 <= 940)) {
-      eraseLast();
-    }
-  }
-  else if(btnSet1 >= 500 && btnSet1 <= 640){
-    /*if(previous1 >= 500 && previous1 <= 640){
-      saveResult(8);
-    }*/
-    
-    // code for btn submit is placed here because I don't have enough button
-    if (!(previous1 >= 500 && previous1 <= 640)) {
-      computeResult();      
+  else if(btnSet1 >= 480 && btnSet1 <= 640){
+    if(!(previous1 >= 500 && previous1 <= 640)){
+      saveResult(3);
     }
   }
   else if(btnSet1 > 4 && btnSet1 <= 20){
     if(!(previous1 > 4 && previous1 <= 20)){
-      saveResult(9);
+      saveResult(2);
+    }
+  }
+  
+  // get the value from the set of buttons plugged into A2
+  if(btnSet2>1015){
+    if(!(previous2 > 1015)){
+      saveResult(1);
+    }
+  }
+  else if(btnSet2 >= 980 && btnSet2 <= 1010){
+    if(!(previous2 >= 980 && previous2 <= 1010)){
+      saveResult(0);
     }
   }
 
   previous0 = btnSet0;
   previous1 = btnSet1;
+  previous2 = btnSet2;
 }
 
 void randomCalc() {  
@@ -171,7 +164,7 @@ void computeResult() {
       else {
         lcd.print("Looser!");
       }
-  } else {
+  } else {tn
       if(firstOperand + secOperand == answerN) {
         lcd.print("Congrats!");
       } 
